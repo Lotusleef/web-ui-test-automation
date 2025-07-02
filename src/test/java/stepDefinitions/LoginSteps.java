@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
 import pages.LoginPage;
 
 public class LoginSteps {
@@ -41,13 +42,15 @@ public class LoginSteps {
 
     @Then("user should be redirected to homepage")
     public void user_should_be_redirected_to_homepage() {
-        System.out.println("Berhasil login");
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue("URL tidak sesuai, login gagal", currentUrl.contains("inventory"));
         driver.quit();
     }
 
     @Then("user should see an error message")
     public void user_should_see_an_error_message() {
-        System.out.println("Login gagal");
+        boolean isErrorVisible = driver.getPageSource().contains("Epic sadface");
+        Assert.assertTrue("Pesan error tidak muncul", isErrorVisible);
         driver.quit();
     }
 }
