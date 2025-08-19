@@ -62,3 +62,10 @@ jobs:
 
     - name: Execute test
       run: ./gradlew cucumber
+
+    - name: Upload Cucumber Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: cucumber-report
+        path: build/cucumber-reports 
+
