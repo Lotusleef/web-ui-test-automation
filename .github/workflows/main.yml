@@ -56,3 +56,15 @@ jobs:
         name: cucumber-report
         path: build/cucumber-reports 
 
+    - name: Upload Web Automation Test Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: web-automation-report
+        path: build/reports/tests/test
+
+    - name: Upload API Automation Test Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: api-automation-report
+        path: api/build/reports/tests/test
+
