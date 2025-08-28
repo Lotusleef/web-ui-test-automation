@@ -1,4 +1,4 @@
-name: web automation workflow
+name: web UI automation workflow
 
 on:
   push:
@@ -62,9 +62,4 @@ jobs:
         name: web-automation-report
         path: build/reports/tests/test
 
-    - name: Upload API Automation Test Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: api-automation-report
-        path: api/build/reports/tests/test
-
+    
