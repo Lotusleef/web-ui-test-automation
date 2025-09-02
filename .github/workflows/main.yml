@@ -62,4 +62,27 @@ jobs:
         name: web-automation-report
         path: build/reports/tests/test
 
+    - name: Execute UI tests
+      run: ./gradlew clean test   
+
+    - name: Upload Cucumber HTML
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ui-cucumber-report
+        path: "build/cucumber-report/**"
     
+    - name: Upload Cucumber JSON/XML
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ui-cucumber-json-xml
+        path: |
+          build/cucumber-report/cucumber.json
+          build/cucumber-report/cucumber.xml
+    
+    - name: Cara membuka report
+      if: always()
+      run: |
+        echo "Download **ui-cucumber-report**, unzip, lalu buka **index.html**" >> $GITHUB_STEP_SUMMARY
+
